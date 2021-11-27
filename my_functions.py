@@ -109,7 +109,7 @@ class CustomDataGen(tf.keras.utils.Sequence):
                 return image.astype(np.double)
 
         def __get_output(self, path):
-                image = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+                image = cv2.imread(path)
                 return image.astype(np.double)
 
         def __getitem__(self, index):
@@ -209,7 +209,7 @@ def getModel(inputShape):
         x = layers.LeakyReLU(alpha=0.001)(x)
         x = layers.Conv2D(64, 3, padding='same', activation=None, kernel_initializer='HeUniform')(x)
         x = layers.LeakyReLU(alpha=0.001)(x)
-        decoder_output = layers.Conv2D(1, 1, padding='valid', activation=None, kernel_initializer='HeUniform', name='model_output')(x)
+        decoder_output = layers.Conv2D(3, 1, padding='valid', activation='softmax', kernel_initializer='HeUniform', name='model_output')(x)
 
         encoder_decoder = keras.Model(encoder_input, decoder_output, name="encoder-decoder")
         return encoder_decoder

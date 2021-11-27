@@ -45,7 +45,7 @@ predictgen = my_functions.CustomDataGen(input_filepaths=x_pred, output_filepaths
 
 encoder_decoder = my_functions.getModel([360, 480])
 encoder_decoder.load_weights('weights-50-10p.h5')
-encoder_decoder.compile(optimizer='Adam', loss=losses.MeanSquaredError())
+encoder_decoder.compile(optimizer='Adam', loss='categorical_crossentropy')
 result = encoder_decoder.predict(x=predictgen)
 
 circleFinder = my_functions.extractCiclesModel([360, 480])
