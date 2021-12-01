@@ -112,11 +112,10 @@ for (lbl_path, col_lbl_path, img_path, meta_path) in zip(bkgr_label_samples, bkg
         plant_details.append([area, 0])
         stem_x, stem_y = my_functions.findStemForBBox(stem["x"], stem["y"], x, y, w, h)
 
-        cv2.circle(stem_mask[:, :, 0], (stem_x, stem_y), 11, 0, thickness=-1)
         if plant_id > 1.5:
-            cv2.circle(stem_mask[:,:,2], (stem_x, stem_y), 11, 1, thickness=-1)
+            cv2.circle(stem_mask, (stem_x, stem_y), 11, [0.0,0.0,1.0], thickness=-1)
         else:
-            cv2.circle(stem_mask[:,:,1], (stem_x, stem_y), 11, 1, thickness=-1)
+            cv2.circle(stem_mask, (stem_x, stem_y), 11, [0.0,1.0,0.0], thickness=-1)
 
         bbox = {
             "plant_id": bboxid,

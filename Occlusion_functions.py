@@ -246,11 +246,10 @@ def addPlant(img_data_bundle, new_plant_data_bundle_list, occlusion_percent=0, n
                                                                 xmin:xmax] + radius_new * new_plant_pix_vis.astype(
                             'int')
 
-                        cv2.circle(stem_mask[:, :, 0], (xmin + int(new_stem["x"]), ymin + int(new_stem["y"])), 11, 0, thickness=-1)
                         if new_plant_species > 1.5:
-                            cv2.circle(stem_mask[:,:,2], (xmin + int(new_stem["x"]), ymin + int(new_stem["y"])), 11, 1, thickness=-1)
+                            cv2.circle(stem_mask, (xmin + int(new_stem["x"]), ymin + int(new_stem["y"])), 11, [0.0,0.0,1.0], thickness=-1)
                         else:
-                            cv2.circle(stem_mask[:,:,1], (xmin + int(new_stem["x"]), ymin + int(new_stem["y"])), 11, 1, thickness=-1)
+                            cv2.circle(stem_mask, (xmin + int(new_stem["x"]), ymin + int(new_stem["y"])), 11, [0.0,1.0,0.0], thickness=-1)
 
                         # 4. Update plant details
                         for i in range(new_plant_id):
@@ -370,11 +369,10 @@ def addPlant(img_data_bundle, new_plant_data_bundle_list, occlusion_percent=0, n
                 plant_size_mask[rand_ymin:rand_ymin + h, rand_xmin:rand_xmin + w] += (
                             new_plant_lbl_mask.astype('int') * radius_new)
 
-                cv2.circle(stem_mask[:, :, 0], (rand_xmin + int(new_stem["x"]), rand_ymin + int(new_stem["y"])), 11, 0, thickness=-1)
                 if new_plant_species > 1.5:
-                    cv2.circle(stem_mask[:,:,2], (rand_xmin + int(new_stem["x"]), rand_ymin + int(new_stem["y"])), 11, 1, thickness=-1)
+                    cv2.circle(stem_mask, (rand_xmin + int(new_stem["x"]), rand_ymin + int(new_stem["y"])), 11, [0.0,0.0,1.0], thickness=-1)
                 else:
-                    cv2.circle(stem_mask[:,:,1], (rand_xmin + int(new_stem["x"]), rand_ymin + int(new_stem["y"])), 11, 1, thickness=-1)
+                    cv2.circle(stem_mask, (rand_xmin + int(new_stem["x"]), rand_ymin + int(new_stem["y"])), 11, [0.0,1.0,0.0], thickness=-1)
 
                 # 3. Update bboxes
                 plant_outline = (plant_id_mask == new_plant_id).astype('uint8')

@@ -1,52 +1,52 @@
 0% Occlusion:
 -------------------------------------------------
-True Positives: 2279
-False Positives: 16.0
-False Negatives: 87
+True Positives: 2295
+False Positives: 10.0
+False Negatives: 71
 
-Recall = TP/(TP+FN) = 2279/(2279+87) = 0.9632
-Precision = TP/(TP+FP) = 2279/(2279+16) = 0.9930
-F1 = 2*R*P/(R+P) = 0.9779
+Recall = TP/(TP+FN) = 2295/(2295+71) = 0.9700
+Precision = TP/(TP+FP) = 2295/(2295+10) = 0.9957
+F1 = 2*R*P/(R+P)
 
 
 10% Occlusion:
 -------------------------------------------------
-True Positives: 2414
-False Positives: 29.0
-False Negatives: 106
+True Positives: 2423
+False Positives: 28.0
+False Negatives: 97
 
-Recall = TP/(TP+FN) = 2414/(2414+106) = 0.9579
-Precision = TP/(TP+FP) = 2414/(2414+29) = 0.9881
-F1 = 2*R*P/(R+P) = 0.9728
+Recall = TP/(TP+FN) = 2423/(2423+97) = 0.9615
+Precision = TP/(TP+FP) = 2423/(2423+28) = 0.9886
+F1 = 2*R*P/(R+P) =
 
 
 20% Occlusion:
 -------------------------------------------------
-True Positives: 2440
-False Positives: 38
-False Negatives: 162
+True Positives: 2384
+False Positives: 20.0
+False Negatives: 218
 
-Recall = TP/(TP+FN) = 2440/(2440+162) = 0.9377
-Precision = TP/(TP+FP) = 2440/(2440+38) = 0.9847
-F1 = 2*R*P/(R+P) = 0.9606
+Recall = TP/(TP+FN) = 2384/(2384+218) =
+Precision = TP/(TP+FP) = 2384/(2384+20) =
+F1 = 2*R*P/(R+P) =
 
 
 30% Occlusion:
 -------------------------------------------------
-True Positives: 2311
-False Positives: 45.0
-False Negatives: 218
+True Positives: 2314
+False Positives: 42.0
+False Negatives: 215
 
-Recall = TP/(TP+FN) = 2311/(2311+218) = 0.9138
-Precision = TP/(TP+FP) = 2311/(2311+45) = 0.9809
+Recall = TP/(TP+FN) = 2314/(2314+218) = 0.9138
+Precision = TP/(TP+FP) = 2314/(2314+45) = 0.9809
 F1 = 2*R*P/(R+P) = 0.9462
 
 
 40% Occlusion:
 -------------------------------------------------
-True Positives: 2193
-False Positives: 91.0
-False Negatives: 280
+True Positives: 2078
+False Positives: 60.0
+False Negatives: 395
 
 Recall = TP/(TP+FN) = 2193/(2193+280) = 0.8868
 Precision = TP/(TP+FP) = 2193/(2193+91) = 0.9602

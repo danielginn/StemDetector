@@ -209,7 +209,7 @@ def getModel(inputShape):
         x = layers.LeakyReLU(alpha=0.001)(x)
         x = layers.Conv2D(64, 3, padding='same', activation=None, kernel_initializer='HeUniform')(x)
         x = layers.LeakyReLU(alpha=0.001)(x)
-        decoder_output = layers.Conv2D(3, 1, padding='valid', activation='softmax', kernel_initializer='HeUniform', name='model_output')(x)
+        decoder_output = layers.Conv2D(3, 1, padding='valid', activation=None, kernel_initializer='HeUniform', name='model_output')(x)
 
         encoder_decoder = keras.Model(encoder_input, decoder_output, name="encoder-decoder")
         return encoder_decoder
@@ -237,7 +237,6 @@ def extractCiclesModel(inputShape):
 
 def matchCircles(circles_true, circles_pred):
         TP = 0
-        FP = len(circles_pred)
         FN = 0
         FP_array = np.ones(len(circles_pred))
         for t in range(len(circles_true)):
@@ -246,7 +245,10 @@ def matchCircles(circles_true, circles_pred):
                         x_diff = circles_true[t][0] - circles_pred[p][0]
                         y_diff = circles_true[t][1] - circles_pred[p][1]
                         d = sqrt(x_diff*x_diff + y_diff*y_diff)
-                        if d < 8.08:
+                        id_true = circles_true[t][2]
+                        if id_true > 1.5:
+                                id_true = 2
+                        if (d < 8.08) and (id_true == circles_pred[p][2]):
                                 FP_array[p] = 0
                                 if matchFound:
                                         print("Double Match found")
@@ -256,7 +258,17 @@ def matchCircles(circles_true, circles_pred):
                 if not matchFound:
                         FN += 1
         FP = np.sum(FP_array)
-        return TP,FP,FN
+        return TP,FP,FN,FP_array
+
+
+def calculateConf(circles_pred, conf_array):
+        conf = []
+        circle_mask = np.zeros([23, 23], dtype=np.float32)
+        cv2.circle(circle_mask, (11, 11), 11, 1.0, -1)
+        for circle in circles_pred:
+                box = conf_array[circle[1]-11:circle[1]+12, circle[0]-11:circle[0]+12, circle[2]]
+                conf.append(np.sum(np.multiply(box,circle_mask)))
+        return conf
 
 ''' Preprocessing Images:
 - Gaussian smooth with 5x5 kernal, mean=0, SD=1
